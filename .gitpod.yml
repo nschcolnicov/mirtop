@@ -1,0 +1,26 @@
+# Gitpod configuration file
+tasks:
+  - init: |
+      # Install Miniconda
+      wget -q http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+      bash Miniconda-latest-Linux-x86_64.sh -b -p ~/mirtop_env
+
+      # Set PATH for Miniconda
+      export PATH="$HOME/mirtop_env/bin:$PATH"
+
+      # Configure Conda
+      conda config --set ssl_verify false  # For Gitpod
+      conda update -y -n base -c defaults conda  # Update Conda
+      conda install -y anaconda-client
+
+      # Install additional dependencies from Bioconda
+      conda install -y -c bioconda pysam pybedtools biopython samtools
+
+      # Install Python dependencies from requirements.txt
+      pip install -r requirements.txt
+
+      # Install the project in development mode if necessary
+      python setup.py develop
+  command: |
+      export PATH="$HOME/mirtop_env/bin:$PATH"
+      export PATH="$HOME/.pyenv/versions/3.12.6/bin:$PATH"
