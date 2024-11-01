@@ -3,6 +3,8 @@ tasks:
   - init: |
       # Install Miniconda
       wget -q http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
+      mkdir ~/mirtop_env
+      mv Miniconda-latest-Linux-x86_64.sh ~/mirtop_env
       bash Miniconda-latest-Linux-x86_64.sh -b -p ~/mirtop_env
 
       # Set PATH for Miniconda
@@ -19,8 +21,6 @@ tasks:
       # Install Python dependencies from requirements.txt
       pip install -r requirements.txt
 
-      # Install the project in development mode if necessary
-      python setup.py develop
   command: |
       export PATH="$HOME/mirtop_env/bin:$PATH"
       export PATH="$HOME/.pyenv/versions/3.12.6/bin:$PATH"
